@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "discovery"
+		},
+		{
+			"path": "vroomz-payment-service"
+		},
+		{
+			"path": "vroomz-vehicle-service"
+		},
+		{
+			"path": "vroomz-bidding-service"
+		},
+		{
+			"path": "vroomz-gateway"
+		},
+		{
+			"path": "vroomz-user-service"
+		},
+		{
+			"path": "vroomz"
+		}
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic",
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}

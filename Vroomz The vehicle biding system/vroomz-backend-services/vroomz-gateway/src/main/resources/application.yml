@@ -1,0 +1,53 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: vroomz-gateway
+  cloud:
+    gateway:
+      routes:
+        # 1. User Service Route
+        - id: user-service-route
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/auth/**
+
+        # 2. Vehicle Service Route
+        - id: vroomz-service-route
+          uri: lb://VEHICLE-SERVICE
+          predicates:
+            - Path=/api/vehicles/**
+          filters:
+            - name: AuthenticationFilter
+
+        # 3. Bidding Service Route
+        - id: bidding-service-route
+          uri: lb://BIDDING-SERVICE
+          predicates:
+            - Path=/api/bids/**
+          filters:
+            - name: AuthenticationFilter
+
+        # 4. Payment Service Route
+        - id: payment-service-route
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/payments/**
+          filters:
+            - name: AuthenticationFilter
+
+jwt:
+  secret: vroomz_super_secret_key_for_shriram_transport_project_2026
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: /actuator
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
